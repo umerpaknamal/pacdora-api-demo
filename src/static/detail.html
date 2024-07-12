@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.pacdora.com/_pacui/pacdora-icon.png"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Pacdora api demo</title>
+    <link rel="stylesheet" href="/css/iconfont.css" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/detail.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/languages/go.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="header">
+        <a href="/index.html">
+          <img
+            alt="Pacdora"
+            class="logo"
+            width="240"
+            height="38"
+            src="./images/logo.webp"
+          />
+        </a>
+        <div class="header-menu">
+          <a class="header-menu-item active" href="/index.html">Products</a>
+          <a
+            class="header-menu-item"
+            href="/category.html?key=box-mockups&name=Boxes"
+            >Boxes</a
+          >
+          <a
+            class="header-menu-item"
+            href="/category.html?key=bottle-mockups&name=Bottles"
+            >Bottles</a
+          >
+          <a
+            class="header-menu-item"
+            href="/category.html?key=pouch-and-sachet-and-bag--mockups&name=Pouches"
+            >Pouchs</a
+          >
+        </div>
+        <div class="login-btn">Login</div>
+      </div>
+      <div class="body">
+        <div class="body-content">
+          <div
+            class="crumb-box"
+            data-ui-tip="create-project"
+            data-position="bottom"
+          >
+            <a class="crumb-item">All products</a>
+            /<a class="crumb-item">Folding Box</a>
+            /Custom dimensions flip top boxes mailer
+          </div>
+          <div class="info-name" data-pacdora-ui="info-name"></div>
+          <div class="box-info">
+            <div class="left">
+              <div class="box-info-slider">
+                <div class="box-info-item active">
+                  <!-- 3D box expansion and collapse control component start -->
+                  <div
+                    class="collapse-control"
+                    data-ui-tip="collapse"
+                    data-position="bottom"
+                  >
+                    <div onclick="openPacdora(0)">Open</div>
+                    <div class="slider-box">
+                      <div class="slider-selecter"></div>
+                      <div
+                        class="pointer"
+                        onpointerdown="onSliderDown(this)"
+                      ></div>
+                    </div>
+                    <div onclick="openPacdora(1)">Close</div>
+                  </div>
+                  <!-- 3D box expansion and collapse control component end -->
+
+                  <!-- Pacdora component data-pacdora-ui="3d" start -->
+                  <div
+                    class="d3"
+                    data-pacdora-ui="3d"
+                    data-pacdora-id="d3"
+                    data-init-rotation="true"
+                  ></div>
+                  <!-- Pacdora component data-pacdora-ui="3d" end -->
+                </div>
+                <!-- Pacdora component data-pacdora-ui="dieline" start -->
+                <div class="box-info-item" data-tip-position="center">
+                  <div class="dieline" data-pacdora-ui="dieline"></div>
+                </div>
+                <!-- Pacdora component data-pacdora-ui="dieline" end -->
+
+                <!-- Pacdora-component data-pacdora-ui="3d-preview" start -->
+                <div class="box-info-item" data-tip-position="center">
+                  <div data-pacdora-ui="3d-preview" class="preview"></div>
+                </div>
+                <!-- Pacdora-component data-pacdora-ui="3d-preview" end -->
+              </div>
+
+              <!-- Slide Switch Component -->
+              <div class="d3-and-d2-switch" data-ui-tip="switch">
+                <div class="switch-item active" onclick="onSwitch2DAnd3D('3d')">
+                  3D
+                </div>
+                <div class="switch-item" onclick="onSwitch2DAnd3D('dieline')">
+                  Dieline
+                </div>
+                <div class="switch-item" onclick="onSwitch2DAnd3D('2d')">
+                  2D
+                </div>
+              </div>
+              <!-- Slide Switch Component end -->
+              <div class="pac-loading crop-parent"></div>
+            </div>
+            <div class="right">
+              <div class="sub-title" data-ui-tip="dimension">Dimension</div>
+              <div class="selector-box">
+                <select onchange="onChangeDimension(this)" id="dimension">
+                  <option value="">Choose the dimension</option>
+                  <option value="315*202*62">315*202*62mm</option>
+                  <option value="150*100*50">150*100*50mm</option>
+                  <option value="360*240*40">360*240*40mm</option>
+                  <option value="customize">Customize</option>
+                </select>
+              </div>
+              <div class="sub-title mt30" data-ui-tip="material">Material</div>
+              <div class="selector-box">
+                <select onchange="onChangeMaterial(this)" id="material">
+                  <option value="">Choose the material</option>
+                  <option value="White card board">White card board</option>
+                  <option value="E-flute paper">E-flute paper</option>
+                  <option value="Kraft paper">Dark kraft paper</option>
+                </select>
+              </div>
+              <div class="sub-title mt30" data-ui-tip="thickness">
+                Thickness
+              </div>
+              <div class="selector-box">
+                <select onchange="onChangeThickness(this)" id="thickness">
+                  <option value="">Choose the thickness</option>
+                  <option value="1.5">1.5mm</option>
+                  <option value="1">1mm</option>
+                  <option value="2">2mm</option>
+                </select>
+              </div>
+
+              <div class="flex-between" id="quotation-selects">
+                <div class="flex1">
+                  <div class="sub-title mt30">Print</div>
+                  <div class="selector-box">
+                    <select onchange="onChangePrint(this)" id="print">
+                      <option value="">Choose the print method</option>
+                      <option value="blank">Blank</option>
+                      <option value="outside" selected="selected">
+                        Outside
+                      </option>
+                      <option value="inside">Inside</option>
+                      <option value="both">Both Sides</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="flex1 ml20">
+                  <div class="sub-title mt30">Finishing</div>
+                  <div class="selector-box">
+                    <select onchange="onChangeFinishing(this)" id="finishing">
+                      <option value="">Choose the Finishing</option>
+                      <option value="blank">Blank</option>
+                      <option value="gloss" selected="selected">Gloss</option>
+                      <option value="matte">Matte</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-between flex-end">
+                <!-- <div class="ml-auto number-box">
+                  <div class="number-control" onclick="onStep(-1)">-</div>
+                  <div id="count">1</div>
+                  <div class="number-control" onclick="onStep(1)">+</div>
+                </div> -->
+
+                <div>
+                  <div class="sub-title mt30">Quantity</div>
+                  <div class="selector-box">
+                    <select onchange="onChangeNumber(this)" id="number">
+                      <option value="500" selected="selected">500</option>
+                      <option value="1000">1000</option>
+                      <option value="2000">2000</option>
+                      <option value="customize">Customize</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="price-box mt30" id="price-box">
+                  <!-- <span class="price-unit">$1.22 / unit</span> -->
+                  <!-- <span class="price-text">Total:</span> -->
+                  <!-- <span class="price-total">$200</span> -->
+                </div>
+              </div>
+              <div class="btn-group">
+                <div class="btn btn-buy" onclick="onBuyClick()">
+                  <div class="pac-loading small white"></div>
+                  Buy
+                </div>
+                <div
+                  class="btn design-btn"
+                  data-pacdora-ui="design-btn"
+                  data-save-screenshot="false"
+                  data-screenshot-width="800"
+                  data-ui-tip="editor"
+                >
+                  <div class="pac-loading small"></div>
+                  Design online
+                </div>
+              </div>
+              <div
+                class="download-text"
+                data-pacdora-ui="download"
+                data-app-key="Your app key"
+                data-pacdora-id="download"
+                data-ui-tip="download"
+              >
+                Download the Dieline
+              </div>
+            </div>
+          </div>
+          <div class="description-box">
+            <h2>Description of the product</h2>
+            <div
+              class="description-info mt30"
+              data-pacdora-ui="info-description"
+            ></div>
+            <div
+              class="description-info mt30"
+              data-pacdora-ui="info-description"
+            ></div>
+            <div
+              class="description-info mt30"
+              data-pacdora-ui="info-description"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="toast-message">It's a demo site, you can't buy anything~</div>
+  </body>
+  <script>
+    // const loadingEle = document.createElement("div");
+    // loadingEle.className = "pac-loading";
+    // Object.assign(loadingEle.style, {
+    //   left: "0",
+    //   top: 0,
+    //   bottom: 0,
+    //   right: 0,
+    //   margin: "auto",
+    //   position: "fixed",
+    //   zIndex: 1000,
+    // });
+    // const mask = document.createElement("div");
+    // mask.className = "mask";
+    // document.body.appendChild(mask);
+    // document.body.appendChild(loadingEle);
+  </script>
+  <script src="./css/iconfont.js"></script>
+
+  <script src="./js/detail.js"></script>
+  <script src="./js/quotation.js"></script>
+  <script src="./js/tips.js"></script>
+  <script src="https://cdn.pacdora.com/Pacdora-v1.1.1.js"></script>
+  <script src="./js/base.js"></script>
+  <script>
+    (async () => {
+      const userId = localStorage.getItem("username");
+      let externalId = localStorage.getItem("externalId");
+      if (!externalId) {
+        externalId = Math.random().toFixed(16).substring(1).toString(16);
+        localStorage.setItem("externalId", externalId);
+      }
+      // remove quotation for mockups
+      if (!allowMakeQuotation()) {
+        const node = document.querySelector("#quotation-selects");
+        if (node) {
+          node.remove();
+        }
+        const option = document.querySelector(
+          "#dimension option[value='customize']"
+        );
+        if (option) {
+          option.remove();
+        }
+
+        // disable dimenssion
+        const dimenssion = document.querySelector("#dimension");
+        if (dimenssion) {
+          dimenssion.disabled = true;
+        }
+        const material = document.querySelector("#material");
+        if (material) {
+          material.disabled = true;
+        }
+
+        const thickness = document.querySelector("#thickness");
+        if (thickness) {
+          thickness.disabled = true;
+        }
+      }
+
+      // Authenticate and log in the user via the Pacdora.init method
+      await Pacdora.init({
+        userId: userId ?? externalId,
+        appId: window.appId,
+        isDelay: true,
+        theme: "#333333",
+        doneBtn: "Save",
+        localeResource: {
+          "Upload & Design": "Online design",
+        },
+      });
+
+      const modelId = getQueryValue("modelId");
+      const id = getQueryValue("id");
+      const templateId = getQueryValue("templateId");
+      // Create a project
+      await Pacdora.createScene({
+        id: id,
+        modelId: modelId,
+        templateId,
+        isShowLoading: false,
+        doneBtn: "Save",
+      });
+
+      // Listen for the event of `data-pacdora-ui="download"`
+      Pacdora.$on("download:start", () => {
+        const downloadEle = document.querySelector(".download-text");
+        downloadEle.innerText = "Downloading...";
+      });
+      Pacdora.$on("download:success", () => {
+        const downloadEle = document.querySelector(".download-text");
+        downloadEle.innerText = "Download success";
+        setTimeout(() => {
+          downloadEle.innerText = "Download the Dieline";
+        }, 1000);
+      });
+      Pacdora.$on("download:fail", () => {
+        const downloadEle = document.querySelector(".download-text");
+        downloadEle.innerText = "Download failed";
+        setTimeout(() => {
+          downloadEle.innerText = "Download the Dieline";
+        }, 1000);
+      });
+
+      // Listen for the callback event after the `data-pacdora-ui="design-btn"` component editor has successfully opened
+      Pacdora.$on("design:opened", () => {
+        const sizeBox = document.querySelector(".size-box");
+        sizeBox.dataset.uiTip = "editor-size";
+        sizeBox.dataset.position = "right";
+        const materialBox = document.querySelector(".pacdora-material-box");
+        materialBox.dataset.uiTip = "editor-material";
+        materialBox.dataset.position = "right";
+        const recommendBox = document.querySelector(".recommend-color-root");
+        recommendBox.dataset.uiTip = "editor-recommend";
+        recommendBox.dataset.position = "right";
+        const saveBtn = document.querySelector(".save-btn");
+        saveBtn.dataset.uiTip = "editor-save";
+        const watermark = document.querySelector(".pacdora-watermark");
+        watermark.dataset.uiTip = "editor-white-label";
+        const designHeader = document.querySelector(".design-body");
+        designHeader.dataset.uiTip = "locale";
+        designHeader.dataset.position = "bottom";
+        const tipEles = [
+          sizeBox,
+          materialBox,
+          recommendBox,
+          saveBtn,
+          watermark,
+          designHeader,
+        ];
+        for (let i = 0; i < tipEles.length; i++) {
+          const ele = tipEles[i];
+          const style = getComputedStyle(ele);
+          if (style.position !== "absolute" && style.position !== "fixed") {
+            ele.style.position = "relative";
+          }
+          const tipUIEle = document.createElement("div");
+          tipUIEle.className = "api-tip";
+          tipUIEle.style.left = "-20px";
+          tipUIEle.style.top = "0px";
+          const tipInner = document.createElement("div");
+          tipInner.className = "api-tip-inner";
+          tipUIEle.appendChild(tipInner);
+          ele.appendChild(tipUIEle);
+          if (ele === designHeader) {
+            tipUIEle.style.left = "10px";
+            tipUIEle.style.top = "-24px";
+            tipUIEle.style.zIndex = 9999;
+          }
+          tipUIEle.onclick = (e) => {
+            e.stopPropagation();
+            showApiTip(ele.dataset.uiTip);
+          };
+          tipUIEle.onmouseenter = (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            showApiToast(tipUIEle, ele.dataset.uiTip, true);
+          };
+          tipUIEle.onmouseleave = (e) => {
+            showApiToast(tipUIEle, ele.dataset.uiTip, false);
+          };
+        }
+      });
+      // Retrieve the box information of the created project and initialize the GUI
+      const info = await Pacdora.getBoxInfo();
+      const dimensionEle = document.getElementById("dimension");
+      if (dimensionEle) {
+        const optionEles = dimensionEle.querySelectorAll("option");
+        let hasEle = false;
+        const txt = `${info.length}*${info.width}*${info.height}mm`;
+        for (let i = 0; i < optionEles.length; i++) {
+          if (optionEles[i].innerText === txt) {
+            hasEle = true;
+          }
+        }
+        if (!hasEle) {
+          const ele = document.createElement("option");
+          ele.innerHTML = txt;
+          ele.value = `${info.length}*${info.width}*${info.height}`;
+          dimensionEle.add(ele, dimensionEle.options[1]);
+        }
+        dimensionEle.value = `${info.length}*${info.width}*${info.height}`;
+      }
+      const materialEle = document.getElementById("material");
+      if (materialEle) {
+        const optionEles = materialEle.querySelectorAll("option");
+        let hasEle = false;
+        const txt = info.materialName;
+        for (let i = 0; i < optionEles.length; i++) {
+          if (optionEles[i].innerText === txt) {
+            hasEle = true;
+          }
+        }
+        if (!hasEle) {
+          const ele = document.createElement("option");
+          ele.innerHTML = txt;
+          ele.value = txt;
+          materialEle.appendChild(ele);
+        }
+        materialEle.value = info.materialName;
+      }
+      const thicknessEle = document.getElementById("thickness");
+      if (thicknessEle) {
+        const optionEles = thicknessEle.querySelectorAll("option");
+        let hasEle = false;
+        const txt = `${info.thickness}`;
+        for (let i = 0; i < optionEles.length; i++) {
+          if (optionEles[i].innerText === txt) {
+            hasEle = true;
+          }
+        }
+        if (!hasEle) {
+          const ele = document.createElement("option");
+          ele.innerHTML = txt + "mm";
+          ele.value = txt + "";
+          thicknessEle.appendChild(ele);
+        }
+        thicknessEle.value = `${info.thickness}`;
+      }
+
+      // Initialization complete, remove loading animation
+      const loadings = document.querySelectorAll(".pac-loading");
+      for (let i = 0; i < loadings.length; i++) {
+        const loadingEle = loadings[i];
+        loadingEle.parentNode?.removeChild(loadingEle);
+      }
+
+      makeQuotation();
+    })();
+  </script>
+</html>

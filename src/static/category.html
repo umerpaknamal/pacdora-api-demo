@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.pacdora.com/_pacui/pacdora-icon.png"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Pacdora api demo</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/category.css" />
+    <link rel="stylesheet" href="/css/iconfont.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/languages/go.min.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="header">
+        <a href="/index.html">
+          <img
+            alt="Pacdora"
+            class="logo"
+            width="240"
+            height="38"
+            src="./images/logo.webp"
+          />
+        </a>
+        <div class="header-menu">
+          <a class="header-menu-item" href="/index.html">Products</a>
+          <a
+            class="header-menu-item"
+            href="/category.html?key=box-mockups&name=Boxes"
+            >Boxes</a
+          >
+          <a
+            class="header-menu-item"
+            href="/category.html?key=bottle-mockups&name=Bottles"
+            >Bottles</a
+          >
+          <a
+            class="header-menu-item"
+            href="/category.html?key=pouch-and-sachet-and-bag--mockups&name=Pouches"
+            >Pouchs</a
+          >
+        </div>
+        <div class="login-btn">Login</div>
+      </div>
+      <div class="body">
+        <div class="body-content">
+          <div style="display: inline-block" data-ui-tip="model-list">
+            <h2 class="title" id="title"></h2>
+          </div>
+          <!-- The list of boxes for a specific category in Pacdora -->
+          <div class="list pb60" id="list">
+            <div class="list-item skeleton-loading"></div>
+            <div class="list-item skeleton-loading"></div>
+            <div class="list-item skeleton-loading"></div>
+            <div class="list-item skeleton-loading"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./css/iconfont.js"></script>
+  <script src="./js/tips.js"></script>
+  <script src="./js/base.js"></script>
+  <script src="./js/category.js"></script>
+</html>

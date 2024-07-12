@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "117470540",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "118829260",
+      "name": "账号",
+      "font_class": "zhanghao",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "125260720",
+      "name": "pencil",
+      "font_class": "pencil",
+      "unicode": "e69a",
+      "unicode_decimal": 59034
+    },
+    {
+      "icon_id": "127442939",
+      "name": "ico-清空",
+      "font_class": "ico-qingkong",
+      "unicode": "e6a0",
+      "unicode_decimal": 59040
+    }
+  ]
+}

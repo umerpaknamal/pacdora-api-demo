@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://www.pacdora.com/_pacui/pacdora-icon.png"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Pacdora api demo</title>
+    <link rel="stylesheet" href="/css/iconfont.css" />
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/languages/go.min.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="header">
+        <a href="/index.html">
+          <img
+            alt="Pacdora"
+            class="logo"
+            width="240"
+            height="38"
+            src="./images/logo.webp"
+          />
+        </a>
+        <div class="header-menu">
+          <a class="header-menu-item active" href="/index.html">Products</a>
+          <a
+            class="header-menu-item"
+            href="/category.html?key=box-mockups&name=Boxes"
+            >Boxes</a
+          >
+          <a
+            class="header-menu-item"
+            href="/category.html?key=bottle-mockups&name=Bottles"
+            >Bottles</a
+          >
+          <a
+            class="header-menu-item"
+            href="/category.html?key=pouch-and-sachet-and-bag--mockups&name=Pouches"
+            >Pouchs</a
+          >
+        </div>
+        <div class="login-btn">Login</div>
+      </div>
+      <div class="body">
+        <div class="body-content">
+          <h2 class="title" data-ui-tip="cate-tree">Categories</h2>
+          <!-- Category data of boxes on the Pacdora official website -->
+          <div class="categories-box" id="category-box">
+            <a class="category-item" href="#"></a>
+            <a class="category-item" href="#"></a>
+            <a class="category-item" href="#"></a>
+            <a class="category-item" href="#"></a>
+            <a class="category-item" href="#"></a>
+            <a class="category-item" href="#"></a>
+            <a class="category-item" href="#"></a>
+            <a class="category-item" href="#"></a>
+          </div>
+          <h2 class="title mt80">All the Products</h2>
+          <br />
+          <h3 class="title2 mt30 mb30" data-ui-tip="create-blank">
+            Design from blank models
+          </h3>
+          <!-- Show a blank box template, and a project can be created using the modelId -->
+          <div class="list">
+            <a class="list-item" href="/detail.html?modelId=100103">
+              <img
+                src="//cdn.pacdora.com/image-resize/500xauto_outside/preview/100103-white-board-71.jpg"
+              />
+              <p>
+                Double tray boxes storage with front opening cardboard mailer
+                mockup
+              </p>
+            </a>
+            <a class="list-item" href="/detail.html?modelId=310030">
+              <img
+                src="//cdn.pacdora.com/image-resize/500xauto_outside/preview/310030-flute-6.jpg"
+              />
+              <p>Inserts tuck end box inserts square inserts mockup</p>
+            </a>
+            <a class="list-item" href="/detail.html?modelId=150010">
+              <img
+                src="//cdn.pacdora.com/image-resize/500xauto_outside/preview/150010-white-board-20.jpg"
+              />
+              <p>Flip top boxes mailer all-in-one mockup</p>
+            </a>
+            <a class="list-item" href="/detail.html?modelId=160010">
+              <img
+                src="//cdn.pacdora.com/image-resize/650xauto_outside/preview/160010-flute-31.jpg"
+              />
+              <p>Boxes with lid corrugated shoe top & bottom lid mockup</p>
+            </a>
+            <a class="list-item" href="/detail.html?modelId=200010">
+              <img
+                src="//cdn.pacdora.com/image-resize/650xauto_outside/preview/200010-flute-67.jpg"
+              />
+              <p>Cartons 0201 paper mockup</p>
+            </a>
+            <a class="list-item" href="/detail.html?modelId=610020">
+              <img
+                src="//cdn.pacdora.com/image-resize/650xauto_outside/render/20240508/104000370001.jpg"
+              />
+              <p>Tote bags paper mockup</p>
+            </a>
+            <a class="list-item" href="/detail.html?modelId=200200">
+              <img
+                src="//cdn.pacdora.com/image-resize/650xauto_outside/preview/200200-flute-66.jpg"
+              />
+              <p>Cartons bring your own grid dividers mockup</p>
+            </a>
+            <a class="list-item" href="/detail.html?modelId=128030">
+              <img
+                src="//cdn.pacdora.com/image-resize/650xauto_outside/preview/128030-kraft-40.jpg"
+              />
+              <p>Sleeve box tray boxes drawer mockup</p>
+            </a>
+          </div>
+          <!-- A list of pre-designed templates, and a project can be created using the templateId -->
+          <h3 class="title2 mt80 mb30" data-ui-tip="create-template">
+            Design from templates
+          </h3>
+          <div class="list pb60" id="templates-box"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="./css/iconfont.js"></script>
+  <script src="./js/tips.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="./js/base.js"></script>
+  <script src="https://cdn.pacdora.com/Pacdora-v1.1.1.js"></script>
+  <script>
+    const userId = localStorage.getItem("username");
+    let externalId = localStorage.getItem("externalId");
+    if (!externalId) {
+      externalId = Math.random().toFixed(16).substring(1).toString(16);
+      localStorage.setItem("externalId", externalId);
+    }
+    setTimeout(async () => {
+      await Pacdora.init({
+        userId: userId ?? externalId,
+        appId: "app_id123",
+        isDelay: true,
+      });
+    }, 1000);
+  </script>
+</html>

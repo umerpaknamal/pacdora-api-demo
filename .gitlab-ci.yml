@@ -1,0 +1,38 @@
+image: node:12.14.1
+
+stages:
+  - build
+  - deploy
+
+prod-build:
+  stage: build
+  image: docker:latest
+  services:
+    - name: docker:dind
+  script:
+    - IMAGE_NAME=pacdora-api-demo
+    - IMAGE_VERSION=${CI_COMMIT_TAG:9}
+    - docker login --username=menghang@1023777669394575 --password=${ALIYUN_REGISTRY_PASS} registry.cn-hangzhou.aliyuncs.com
+    - docker build -t $IMAGE_NAME:$IMAGE_VERSION .
+    - docker tag $IMAGE_NAME:$IMAGE_VERSION registry.cn-hangzhou.aliyuncs.com/baoxiaohe/$IMAGE_NAME:$IMAGE_VERSION
+    - docker push registry.cn-hangzhou.aliyuncs.com/baoxiaohe/$IMAGE_NAME:$IMAGE_VERSION
+  only:
+    - /^release-v.*$/
+
+prod-deploy:
+  stage: deploy
+  image: oberonamsterdam/pm2-git:12-alpine
+  script:
+    - "which ssh-agent || ( sudo apt-get install -qq openssh-client )"
+    - eval $(ssh-agent -s)
+    - echo "$SSH_STAGING_DEPLOY_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    - remoteDir=/srv/api-demo
+    - deployServer=aws01.pacdora.com
+    - version=${CI_COMMIT_TAG:9}
+    - ssh pacdora@${deployServer} "docker login --username=menghang@1023777669394575 --password=${ALIYUN_REGISTRY_PASS} registry.cn-hangzhou.aliyuncs.com
+      && cd $remoteDir && sed -i 's/[0-9]\+\.[0-9]\+\.[0-9]\+/${version}/g' docker-compose.yml
+      && docker-compose down && docker-compose up -d && sleep 20 "
+  only:
+    - /^release-v.*$/
