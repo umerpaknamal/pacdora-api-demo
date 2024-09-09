@@ -66,20 +66,5 @@
     const templateBox = document.getElementById("templates-box");
     templateBox.innerHTML = templateHtml;
     // Pre-designed templates GUI end
-
-    // tipsDom
-    const tipsDom = document.createElement("div");
-    tipsDom.innerText =
-      "Currently displaying sample data only. To access the full data, please grant the necessary permissions.";
-    if (result.code === 422) {
-      const boxTipsDom = tipsDom.cloneNode(true);
-      boxTipsDom.style = "margin-top: 20px; font-size: 14px; color: #ccc;";
-      box.insertAdjacentElement("afterend", boxTipsDom);
-    }
-    if (templateResult.code === 422) {
-      const templateTipsDom = tipsDom.cloneNode(true);
-      templateTipsDom.style = "margin-top: -40px; font-size: 14px; color: #ccc;";
-      templateBox.insertAdjacentElement("afterend", templateTipsDom);
-    }
   } catch (e) {}
 })();

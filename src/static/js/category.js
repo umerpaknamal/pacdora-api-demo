@@ -73,13 +73,5 @@
         </a>
     `;
   }
-  const listDom = document.querySelector("#list");
-  listDom.innerHTML = html;
-  if (result.code === 422) {
-    const tipsDom = document.createElement("div");
-    tipsDom.style = "color: #ccc;";
-    tipsDom.innerText =
-      "Currently displaying sample data only. To access the full data, please grant the necessary permissions.";
-    listDom.insertAdjacentElement("afterend", tipsDom);
-  }
+  document.querySelector("#list").innerHTML = html;
 })();
