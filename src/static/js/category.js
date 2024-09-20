@@ -1,4 +1,5 @@
 (async () => {
+  setHeaderUser();
   const mockupKey = getQueryValue("key");
   const name = getQueryValue("name");
   document.getElementById("title").innerText = `All the ${name.toLowerCase()}`;

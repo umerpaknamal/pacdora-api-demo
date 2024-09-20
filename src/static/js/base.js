@@ -4,10 +4,7 @@ function getQueryValue(queryName) {
   const params = new URLSearchParams(paramsString);
   return params.get(queryName);
 }
-function closeLogin() {
-  const loginDialog = document.querySelector(".login-dialog");
-  loginDialog?.parentNode?.removeChild(loginDialog);
-}
+
 function onCloseTipDialog() {
   const dom = document.querySelector(".api-tip-dialog");
   const mask = document.querySelector(".mask");
@@ -100,84 +97,25 @@ function showApiTip(tipName) {
 
   hljs.highlightAll();
 }
-function setUserInfo() {
-  const loginBtn = document.querySelector(".login-btn");
-  const userEmail = localStorage.getItem("username");
-  if (loginBtn) {
-    loginBtn.className = "user-header";
+
+function setHeaderUser() {
+  const headerEl = document.querySelector(".header");
+  const userEmail = localStorage.getItem("pacdora:user");
+  if (headerEl && userEmail) {
+    const el = document.createElement("div");
+    el.className = "user-header";
     const name = userEmail.substring(0, 1);
-    loginBtn.innerHTML = `
+    el.innerHTML = `
       <a class="header-my-projects" href="/my.html">
         My projects
       </a>
       <div class="header-my-avatar">${name}</div>
     `;
-    loginBtn.onclick = null;
-  }
-}
-function onSign() {
-  const loginInput = document.getElementById("login-input");
-  const emailInput = document.querySelector("#login-input input");
-  const email = emailInput.value;
-  console.log(
-    "sign",
-    email,
-    /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/.test(email)
-  );
-  if (email === "" || !/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/.test(email)) {
-    loginInput.className = "form-item error";
-    document.querySelector(".login-valid-error").innerHTML =
-      "The email format is incorrect";
-  } else {
-    localStorage.setItem("username", email);
-    closeLogin();
-    setUserInfo();
+    headerEl.appendChild(el);
   }
 }
 
 (() => {
-  const loginBtn = document.querySelector(".login-btn");
-  const userEmail = localStorage.getItem("username");
-  if (!userEmail && loginBtn) {
-    loginBtn.onclick = function () {
-      const dom = document.createElement("div");
-      Object.assign(dom.style, {
-        width: "540px",
-        height: "520px",
-        position: "fixed",
-        display: "inline-block",
-        borderRadius: "16px",
-        left: 0,
-        top: 0,
-        bottom: 0,
-        right: 0,
-        margin: "auto",
-        padding: "0 20px",
-        boxShadow: "0px 8px 24px rgba(113, 66, 180, 0.12)",
-        background: "#fff",
-      });
-      dom.innerHTML = `
-        <div class="login-header">
-          <i class="iconfont icon-ico-qingkong" onclick="closeLogin()"></i>
-        </div>
-        <div class="login-title">
-          Sign in
-        </div>
-        <div class="login-form">
-          <div class="form-item" id="login-input">
-            <i class="iconfont icon-zhanghao"></i>
-            <input class="login-input" placeholder="Your email"></input>
-          </div>
-          <div class="login-valid-error"></div>
-          <div class="btn mt40" onclick="onSign()">Sign in</div>
-        </div>
-      `;
-      dom.className = "login-dialog";
-      document.body.appendChild(dom);
-    };
-  } else {
-    setUserInfo();
-  }
   const tipEles = document.querySelectorAll("[data-ui-tip]");
   for (let i = 0; i < tipEles.length; i++) {
     const ele = tipEles[i];

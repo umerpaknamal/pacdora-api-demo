@@ -281,56 +281,6 @@ a {
   width: 60px;
   text-align: center;
 }
-
-.login-header {
-  height: 44px;
-  position: relative;
-  text-align: right;
-}
-.login-header .iconfont {
-  width: 24px;
-  height: 24px;
-  font-size: 32px;
-  line-height: 44px;
-  cursor: pointer;
-}
-.login-title {
-  color: #191919;
-  font-family: Gilroy;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 48px; /* 150% */
-  text-align: center;
-}
-.login-form {
-  margin-top: 60px;
-}
-.login-form .form-item {
-  border-radius: 8px;
-  border: 1px solid #000;
-  display: flex;
-  align-items: center;
-  padding: 12px 16px;
-}
-.login-form .form-item .iconfont {
-  width: 24px;
-  height: 24px;
-  font-size: 20px;
-  color: #d1d0d2;
-}
-.login-form .form-item input {
-  outline: none;
-  border: none;
-  font-size: 16px;
-  font-weight: 400;
-  flex: 1;
-}
-.login-valid-error {
-  font-size: 14px;
-  margin-top: 10px;
-  color: red;
-}
 @keyframes errorMove {
   0% {
     transform: translateX(-5px);

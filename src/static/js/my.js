@@ -175,7 +175,7 @@ async function getProjectList() {
                       item.id
                     })" ${
       i === 0 ? 'data-ui-tip="my-editor"' : ""
-    }>ReDesign</div>
+    }>Return to Design</div>
                     <div class="ml20 flex1">
                       <div class="btn  outline" onclick="onDownload(this, ${
                         item.id
@@ -235,4 +235,5 @@ async function getProjectList() {
     theme: "#333333",
   });
   getProjectList();
+  setHeaderUser();
 })();

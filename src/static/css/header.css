@@ -40,14 +40,3 @@
   background: #f3f3f3;
   font-weight: 400;
 }
-.login-btn {
-  border-radius: 40px;
-  border: 1px solid #333;
-  background: #fff;
-  width: 100px;
-  height: 40px;
-  display: inline-block;
-  line-height: 40px;
-  text-align: center;
-  cursor: pointer;
-}
