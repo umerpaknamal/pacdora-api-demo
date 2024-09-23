@@ -145,14 +145,9 @@
   <script src="https://cdn.pacdora.com/Pacdora-v1.1.2.js"></script>
   <script>
     const userId = localStorage.getItem("username");
-    let externalId = localStorage.getItem("externalId");
-    if (!externalId) {
-      externalId = Math.random().toFixed(16).substring(1).toString(16);
-      localStorage.setItem("externalId", externalId);
-    }
     setTimeout(async () => {
       await Pacdora.init({
-        userId: userId ?? externalId,
+        userId: userId ?? undefined,
         appId: "app_id123",
         isDelay: true,
       });

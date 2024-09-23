@@ -285,11 +285,6 @@
   <script>
     (async () => {
       const userId = localStorage.getItem("username");
-      let externalId = localStorage.getItem("externalId");
-      if (!externalId) {
-        externalId = Math.random().toFixed(16).substring(1).toString(16);
-        localStorage.setItem("externalId", externalId);
-      }
       // remove quotation for mockups
       if (!allowMakeQuotation()) {
         const node = document.querySelector("#quotation-selects");
@@ -321,7 +316,7 @@
 
       // Authenticate and log in the user via the Pacdora.init method
       await Pacdora.init({
-        userId: userId ?? externalId,
+        userId: userId ?? undefined,
         appId: window.appId,
         isDelay: true,
         theme: "#333333",
