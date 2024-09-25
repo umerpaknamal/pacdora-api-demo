@@ -104,12 +104,16 @@ function setHeaderUser() {
   if (headerEl && userEmail) {
     const el = document.createElement("div");
     el.className = "user-header";
-    const name = userEmail.substring(0, 1);
     el.innerHTML = `
       <a class="header-my-projects" href="/my.html">
         My projects
       </a>
-      <div class="header-my-avatar">${name}</div>
+      <div class="header-my-avatar">
+        <img
+          src="https://oss.baoxiaohe.com/op/scripts/fc822b05189f578023bfd1d7d11a46a23854d24b.jpeg"
+          style="width: 100%; border-radius: 50%;"
+        />
+      </div>
     `;
     headerEl.appendChild(el);
   }
